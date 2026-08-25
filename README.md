@@ -15,7 +15,13 @@ Automation engines answer **how** to perform work. AI agents answer **what** the
 - Can it be reversed or compensated?
 - What happens after a partial cross-system failure?
 
+## How It Works
+
+![How FlowCommit Works](media_resources/howitsworks.png)
+
 ## Architecture
+
+![FlowCommit Architecture](media_resources/architecture_diagram.png)
 
 ```text
 Business Intent / Workflow / Agent
@@ -48,6 +54,10 @@ Business Intent / Workflow / Agent
           |        |        |
        COMMIT  COMPENSATE  RECONCILE
 ```
+
+## Key Features
+
+![Key Features & Capabilities](media_resources/features.png)
 
 ## Implemented in this repository
 
