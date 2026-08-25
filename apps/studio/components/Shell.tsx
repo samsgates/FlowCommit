@@ -1,0 +1,4 @@
+import Link from "next/link";
+const items=[["Overview","/"],["Transactions","/transactions"],["Workflows","/workflows"],["Contracts","/contracts"],["Approvals","/approvals"],["Reconciliation","/reconciliation"],["Executors","/executors"],["Policies","/policies"],["Evidence","/evidence"],["Audit","/audit"],["Settings","/settings"]];
+export function Shell({children,active}:{children:React.ReactNode,active:string}){return <div className="shell"><aside className="side"><div className="brand">FlowCommit</div><nav className="nav">{items.map(([n,h])=><Link className={n===active?"active":""} href={h} key={n}>{n}</Link>)}</nav></aside><main>{children}</main></div>}
+export function Header({title,subtitle}:{title:string,subtitle:string}){return <div className="top"><div><h1 className="title">{title}</h1><div className="subtitle">{subtitle}</div></div><div className="pill">Enterprise control plane</div></div>}

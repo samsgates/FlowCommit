@@ -1,0 +1,1 @@
+import {Shell,Header} from "../../components/Shell";export default function Page(){return <Shell active="Evidence"><Header title="Evidence" subtitle="Tamper-evident transaction evidence and receipts."/><div className="card"><div className="subtitle">This module is exposed through the control-plane APIs and is ready for deployment-specific configuration.</div></div></Shell>}

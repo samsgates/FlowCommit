@@ -1,0 +1,10 @@
+{
+  "apiVersion":"flowcommit.io/v1","kind":"BusinessEffectContract",
+  "metadata":{"name":"demo-safe-action","version":1,"description":"Runnable local demonstration contract"},
+  "intent":{"type":"demo.safe_action"},"risk":{"level":"LOW"},
+  "idempotency":{"strategy":"REQUIRED","keyTemplate":"demo:${requestId}"},
+  "execution":{"preferred":["mock"]},
+  "expectedEffects":[{"id":"demo-effect","type":"demo.completed"}],
+  "verification":{"required":true,"minimumStrength":90,"rules":[{"id":"demo-check","effectId":"demo-effect","verifier":"mock-verifier","strength":100,"required":true}]},
+  "reversibility":{"type":"FULLY_REVERSIBLE","score":100}
+}

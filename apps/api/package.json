@@ -1,0 +1,6 @@
+{
+  "name":"@flowcommit/api","version":"0.1.0","private":true,"type":"module",
+  "scripts":{"dev":"tsx watch src/server.ts","build":"tsc -p tsconfig.json","start":"node dist/server.js"},
+  "dependencies":{"fastify":"^5.5.0","@fastify/cors":"^11.1.0","@fastify/helmet":"^13.0.1","@flowcommit/core":"0.1.0","@flowcommit/db":"0.1.0","@flowcommit/policy":"0.1.0","@flowcommit/evidence":"0.1.0"},
+  "devDependencies":{"tsx":"^4.20.0","@types/node":"^22.0.0"}
+}

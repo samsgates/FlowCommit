@@ -1,0 +1,1 @@
+{"name":"@flowcommit/evidence","version":"0.1.0","type":"module","main":"dist/index.js","types":"dist/index.d.ts","dependencies":{"@flowcommit/core":"0.1.0","@flowcommit/db":"0.1.0"},"scripts":{"build":"tsc -p tsconfig.json"}}

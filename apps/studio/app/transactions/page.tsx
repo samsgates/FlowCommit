@@ -1,0 +1,2 @@
+import {Shell,Header} from "../../components/Shell";import {safeApi} from "../../lib/api";
+export default async function Page(){const d=await safeApi<any>("/api/v1/transactions?limit=200",{items:[]});return <Shell active="Transactions"><Header title="Transactions" subtitle="Every business transaction and its safety state."/><div className="card"><pre className="json">{JSON.stringify(d.items,null,2)}</pre></div></Shell>}

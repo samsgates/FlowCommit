@@ -1,0 +1,24 @@
+replicaCount: 2
+image:
+  repository: ghcr.io/flowcommit/flowcommit-api
+  tag: "0.1.0"
+  pullPolicy: IfNotPresent
+service:
+  type: ClusterIP
+  port: 8080
+env:
+  NODE_ENV: production
+  PORT: "8080"
+  OPA_URL: http://opa:8181
+resources:
+  requests: {cpu: 250m, memory: 256Mi}
+  limits: {cpu: "1", memory: 1Gi}
+podSecurityContext:
+  runAsNonRoot: true
+  seccompProfile: {type: RuntimeDefault}
+securityContext:
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: true
+  capabilities: {drop: ["ALL"]}
+networkPolicy:
+  enabled: true

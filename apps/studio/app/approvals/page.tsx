@@ -1,0 +1,2 @@
+import {Shell,Header} from "../../components/Shell";import {safeApi} from "../../lib/api";
+export default async function Page(){const d=await safeApi<any>("/api/v1/approvals",{items:[]});return <Shell active="Approvals"><Header title="Approvals" subtitle="Transactions blocked on explicit human authorization."/><div className="card"><pre className="json">{JSON.stringify(d.items,null,2)}</pre></div></Shell>}

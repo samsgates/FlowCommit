@@ -1,0 +1,1 @@
+{"name":"@flowcommit/temporal","version":"0.1.0","type":"module","main":"dist/index.js","types":"dist/index.d.ts","dependencies":{"@temporalio/client":"^1.13.2","@temporalio/worker":"^1.13.2","@temporalio/workflow":"^1.13.2","@flowcommit/core":"0.1.0"},"scripts":{"build":"tsc -p tsconfig.json"}}

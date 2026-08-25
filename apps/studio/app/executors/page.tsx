@@ -1,0 +1,1 @@
+import {Shell,Header} from "../../components/Shell";export default function Page(){return <Shell active="Executors"><Header title="Executors" subtitle="Registered execution engines and worker capabilities."/><div className="card"><div className="subtitle">This module is exposed through the control-plane APIs and is ready for deployment-specific configuration.</div></div></Shell>}

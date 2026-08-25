@@ -1,0 +1,41 @@
+{
+  "apiVersion": "flowcommit.io/v1",
+  "kind": "BusinessEffectContract",
+  "metadata": {
+    "name": "customer-refund",
+    "version": 1,
+    "description": "Issue an eligible customer refund and independently verify payment and accounting effects.",
+    "labels": {
+      "flowcommit.io/http-url": "https://payments.example.invalid/refunds",
+      "flowcommit.io/http-method": "POST"
+    }
+  },
+  "intent": {"type": "finance.refund", "description": "Refund a customer payment"},
+  "risk": {"category": "financial", "level": "HIGH", "baseScore": 70},
+  "inputs": {
+    "invoiceId": {"type": "string", "required": true},
+    "amount": {"type": "number", "required": true}
+  },
+  "preconditions": [
+    {"id": "invoice-paid", "expression": "invoice.status == 'paid'"},
+    {"id": "not-refunded", "expression": "invoice.refundStatus == 'none'"}
+  ],
+  "idempotency": {"strategy": "REQUIRED", "keyTemplate": "refund:${invoiceId}:${amount}", "ttlSeconds": 2592000},
+  "execution": {"preferred": ["payment-api"], "fallback": ["enterprise-rpa"], "timeoutMs": 30000},
+  "expectedEffects": [
+    {"id": "payment-refunded", "type": "payment.refund", "resource": "${invoiceId}", "expected": {"status": "completed"}},
+    {"id": "ledger-updated", "type": "accounting.ledger.refund", "resource": "${invoiceId}"}
+  ],
+  "verification": {
+    "required": true,
+    "minimumStrength": 90,
+    "rules": [
+      {"id": "payment-api", "verifier": "payment-api-verifier", "strength": 95, "required": true},
+      {"id": "ledger-api", "verifier": "accounting-api-verifier", "strength": 95, "required": true}
+    ]
+  },
+  "approval": {"rules": [{"role": "finance-manager", "count": 1}]},
+  "reversibility": {"type": "COMPENSATABLE", "score": 25},
+  "compensation": {"contract": {"name": "reverse-refund", "version": 1}, "strategy": "RECONCILE"},
+  "evidence": {"retentionDays": 2555, "capture": ["policy_decision", "executor_result", "verification_result", "approvals"]}
+}

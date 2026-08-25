@@ -1,0 +1,12 @@
+{
+  "apiVersion":"flowcommit.io/v1",
+  "kind":"Workflow",
+  "metadata":{"name":"employee-onboarding","version":1},
+  "steps":[
+    {"id":"validate","contract":"employee.validate@1"},
+    {"id":"identity","contract":"identity.user.create@1","dependsOn":["validate"]},
+    {"id":"crm","contract":"crm.user.create@1","dependsOn":["validate"]},
+    {"id":"github","contract":"github.access.grant@1","dependsOn":["identity"]},
+    {"id":"verify","contract":"employee.onboarding.verify@1","dependsOn":["identity","crm","github"]}
+  ]
+}

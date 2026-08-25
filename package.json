@@ -1,0 +1,25 @@
+{
+  "name": "flowcommit",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Transactional safety runtime and control plane for enterprise RPA and AI agents.",
+  "license": "Apache-2.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "adapters/*"
+  ],
+  "scripts": {
+    "build": "npm run build -w @flowcommit/core && npm run build -w @flowcommit/sdk && npm run build -w @flowcommit/db && npm run build -w @flowcommit/policy && npm run build -w @flowcommit/evidence && npm run build -w @flowcommit/runtime && npm run build -w @flowcommit/api && npm run build -w @flowcommit/worker && npm run build -w @flowcommit/cli && npm run build -w @flowcommit/studio",
+    "build:core": "npm run build -w @flowcommit/core",
+    "test": "npm run build:core && node tests/core.test.mjs",
+    "dev": "docker compose up -d postgres redis temporal temporal-ui opa minio && npm run dev -w @flowcommit/api",
+    "dev:studio": "npm run dev -w @flowcommit/studio",
+    "lint": "npm run lint -ws --if-present",
+    "validate": "python3 scripts/validate_repo.py",
+    "db:init": "psql $DATABASE_URL -f packages/db/schema.sql"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
